@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CakeCard from "./CakeCard";
+import cakes from "./data";
+import SearchBar from "./SearchBar"
 
 function App() {
+  const [ isVisible, setIsVisible] = useState(true)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Flatiron Bakes</h1>
+      {isVisible ? <SearchBar/> : null}
+      <button onClick={() => setIsVisible(!isVisible)}>{isVisible ? 'Hide' : 'Show'}</button>
+      {cakes.map(c => <CakeCard flavor={c.flavor} size={c.size} price={c.price}/>)}
+    </>
   );
 }
 
